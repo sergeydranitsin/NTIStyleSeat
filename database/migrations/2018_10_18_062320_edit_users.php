@@ -30,6 +30,13 @@ class EditUsers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('first_name');
+            $table->dropColumn('second_name');
+            $table->dropColumn('mobile_phone');
+            $table->dropColumn('is_business');
+            $table->dropColumn('social_id');
+            $table->string('name');
+        });
     }
 }
