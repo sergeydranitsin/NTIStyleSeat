@@ -14,8 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('login/facebook', 'LoginController@redirectToFacebook');
-Route::get('login/facebook/callback', 'LoginController@handleFacebookCallback');
-Route::get('login/vk', 'LoginController@redirectToVK');
-Route::get('login/vk/callback', 'LoginController@handleVKCallback');
-Route::get('userInfo', 'LoginController@UserInfo');
+
+Route::get('login/facebook', 'Authentication@redirectToFacebook');
+Route::get('login/vk', 'Authentication@redirectToVK');
+Route::get('userInfo/', 'Authentication@UserInfo');
+
+
+Route::get('/get_user', 'Authentication@getUser');
+
+Route::post('/login/email', 'Authentication@login');
+Route::post('/register/emailClient', 'Authentication@registerClient');
+
+Route::get('/register_businessSN/{provider}', 'Authentication@BusinessSN');
+
+Route::get('/register_clientSN/{provider}', 'Authentication@ClientSN');
+Route::get('/logout', 'Authentication@logout');
