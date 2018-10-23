@@ -11,12 +11,6 @@ use Illuminate\Support\Facades\Validator;
 
 class Authentication extends Controller
 {
-    public function getUser()
-    {
-        return Auth::user();
-    }
-
-
     public function login(Request $request)
     {
         $data = $request->all();
@@ -32,8 +26,7 @@ class Authentication extends Controller
             $user = User::where('email', $request['email'])->first();
 
             if (!$user) {
-                return response()->json(['error' =>
-                    ['email' => 'User with this email is not registered.']]);
+                return  redirect('/')->withErrors(['login' => [$validator->errors()]]);
             }
 
             $credentials = $request->only('email', 'password');
@@ -42,10 +35,10 @@ class Authentication extends Controller
                 return redirect('/');
             }
 
-            return response()->json(['error' => ['password' => 'The password is wrong.']]);
+            return redirect('/')->withErrors(['login' => [$validator->errors()]]);
         }
 
-        return response()->json(['error' => $validator->errors()]);
+        return redirect('/')->withErrors(['login' => [$validator->errors()]]);
     }
 
 
@@ -76,10 +69,10 @@ class Authentication extends Controller
             ]);
             Auth::login($u);
 
-            return response()->json(['success' => 'User registered.']);
+            return redirect('/');
         }
 
-        return response()->json(['error' => $validator->errors()]);
+        return redirect('/')->withErrors(['regBusiness' => [$validator->errors()]]);
     }
 
     public function registerClient(Request $request)
@@ -106,7 +99,7 @@ class Authentication extends Controller
             return redirect('/');
         }
 
-        return response()->json(['error' => $validator->errors()]);
+        return redirect('/')->withErrors(['regClient' => [$validator->errors()]]);
     }
 
     /**
@@ -153,9 +146,9 @@ class Authentication extends Controller
         if(!$user){
             return response()->json(['error' => "unauth"]);
         }
-        $user = User::where('email', $user->accessTokenResponseBody['email'])->first();
-        if($user) {
-            Auth::login($user);
+        $u = User::where('social_id',$user->getId())->first();
+        if($u) {
+            Auth::login($u);
             return redirect('/');
         }
 
