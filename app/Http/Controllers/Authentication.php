@@ -11,6 +11,19 @@ use Illuminate\Support\Facades\Validator;
 
 class Authentication extends Controller
 {
+    public function getUser()
+    {
+        return Auth::user();
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getLoginForm()
+    {
+        return view('login');
+    }
+
     public function login(Request $request)
     {
         $data = $request->all();
@@ -26,21 +39,29 @@ class Authentication extends Controller
             $user = User::where('email', $request['email'])->first();
 
             if (!$user) {
-                return  redirect('/')->withErrors(['login' => [$validator->errors()]]);
+                return response()->json(['error' =>
+                    ['email' => 'User with this email is not registered.']]);
             }
 
             $credentials = $request->only('email', 'password');
 
             if (Auth::attempt($credentials, $request->has('remember'))) {
-                return redirect('/');
+                return response()->json(['success' => 'User logged in.']);
             }
 
-            return redirect('/')->withErrors(['login' => [$validator->errors()]]);
+            return response()->json(['error' => ['password' => 'The password is wrong.']]);
         }
 
-        return redirect('/')->withErrors(['login' => [$validator->errors()]]);
+        return response()->json(['error' => $validator->errors()]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getRegisterBusinessForm()
+    {
+        return view('register_business');
+    }
 
     /**
      * @param Request $request
@@ -65,14 +86,24 @@ class Authentication extends Controller
                 'password' => Hash::make($data['password']),
                 'first_name' => $data['first_name'],
                 'second_name' => $data['second_name'],
+                'mobile_phone' => @$data['mobile_phone'],
                 'is_business' => true,
             ]);
             Auth::login($u);
 
-            return redirect('/');
+            return response()->json(['success' => 'User registered.']);
         }
 
-        return redirect('/')->withErrors(['regBusiness' => [$validator->errors()]]);
+        return response()->json(['error' => $validator->errors()]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getRegisterClientForm()
+    {
+        return view('register_client');
+
     }
 
     public function registerClient(Request $request)
@@ -80,6 +111,7 @@ class Authentication extends Controller
         $data = $request->all();
 
         $validator = Validator::make($data, [
+            'mobile_phone' => 'string|max:255',
             'first_name' => 'required|string|max:255',
             'second_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -93,42 +125,47 @@ class Authentication extends Controller
                 'password' => Hash::make($data['password']),
                 'first_name' => $data['first_name'],
                 'second_name' => $data['second_name'],
-                'is_business' => false,
+                'mobile_phone' => @$data['mobile_phone'],
+                'is_business' => false
             ]);
             Auth::login($u);
-            return redirect('/');
+
+            return response()->json(['success' => 'User registered.']);
         }
 
-        return redirect('/')->withErrors(['regClient' => [$validator->errors()]]);
+        return response()->json(['error' => $validator->errors()]);
     }
+
 
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function BusinessSN($provider)
+    public
+    function BusinessSN($provider)
     {
-        $user=Socialite::driver($provider)->user();
-        if(!$user){
-            return response()->json(['error' => "unauth"]);}
+        $user = Socialite::driver($provider)->user();
+        if (!$user) {
+            return response()->json(['error' => "unauth"]);
+        }
 
-        if(!Auth::user()) {
-            $name=preg_split('/[\s,]+/',$user->getName());
-            $data=["first_name"=>$name[0],'second_name'=>$name[1],'email'=>$user->accessTokenResponseBody['email']];
+        if (!Auth::user()) {
+            $name = preg_split('/[\s,]+/', $user->getName());
+            $data = ["first_name" => $name[0], 'second_name' => $name[1], 'email' => $user->accessTokenResponseBody['email']];
 
             $validator = Validator::make($data, [
                 'first_name' => 'required|string|max:255',
                 'second_name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
             ]);
-            $data['social_id']=$user->getId();
+            $data['social_id'] = $user->getId();
             // validate request
             if ($validator->passes()) {
                 $u = User::create([
                     'email' => $data['email'],
                     'first_name' => $data['first_name'],
                     'second_name' => $data['second_name'],
-                    'social_id'=>$data['social_id'],
+                    'social_id' => $data['social_id'],
                     'is_business' => true
                 ]);
                 Auth::login($u);
@@ -139,54 +176,57 @@ class Authentication extends Controller
         }
     }
 
-    public function ClientSN($provider)
+    public
+    function ClientSN($provider)
     {
-      //  $data = $request->all();
-        $user=Socialite::driver($provider)->user();
-        if(!$user){
+        //  $data = $request->all();
+        $user = Socialite::driver($provider)->user();
+        if (!$user) {
             return response()->json(['error' => "unauth"]);
         }
-        $u = User::where('social_id',$user->getId())->first();
-        if($u) {
+        $u = User::where('social_id', $user->getId())->first();
+        if ($u) {
             Auth::login($u);
             return redirect('/');
         }
 
-        if(!Auth::user()) {
-            $name=preg_split('/[\s,]+/',$user->getName());
-            $data=["first_name"=>$name[0],'second_name'=>$name[1]];
-            if($provider=="vkontakte")
-                $data['email']=$user->accessTokenResponseBody['email'];
-            else $data['email']=$user->getEmail();
-             $validator = Validator::make($data, [
-                 'first_name' => 'required|string|max:255',
-                 'second_name' => 'required|string|max:255',
-                 'email' => 'required|string|email|max:255|unique:users',
-             ]);
-                $data['social_id']=$user->getId();
-             // validate request
-             if ($validator->passes()) {
-                 $u = User::create([
-                     'email' => $data['email'],
-                     'first_name' => $data['first_name'],
-                     'second_name' => $data['second_name'],
-                     'social_id'=>$data['social_id'],
-                     'is_business' => false
-                 ]);
-                 Auth::login($u);
+        if (!Auth::user()) {
+            $name = preg_split('/[\s,]+/', $user->getName());
+            $data = ["first_name" => $name[0], 'second_name' => $name[1]];
+            if ($provider == "vkontakte")
+                $data['email'] = $user->accessTokenResponseBody['email'];
+            else $data['email'] = $user->getEmail();
+            $validator = Validator::make($data, [
+                'first_name' => 'required|string|max:255',
+                'second_name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+            ]);
+            $data['social_id'] = $user->getId();
+            // validate request
+            if ($validator->passes()) {
+                $u = User::create([
+                    'email' => $data['email'],
+                    'first_name' => $data['first_name'],
+                    'second_name' => $data['second_name'],
+                    'social_id' => $data['social_id'],
+                    'is_business' => false
+                ]);
+                Auth::login($u);
 
-                 return redirect('/');
-             }
+                return redirect('/');
+            }
 
-             return response()->json(['error' => $validator->errors()]);
+            return response()->json(['error' => $validator->errors()]);
         }
     }
-        /**
+
+    /**
      * Redirect the user to the GitHub authentication page.
      *
      * @return \Illuminate\Http\Response
      */
-    public function redirectToFacebook()
+    public
+    function redirectToFacebook()
     {
         return Socialite::driver('facebook')->redirect();
     }
@@ -196,7 +236,8 @@ class Authentication extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function redirectToVK()
+    public
+    function redirectToVK()
     {
         return Socialite::driver('vkontakte')->redirect();
     }
@@ -206,14 +247,10 @@ class Authentication extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function logout(){
+    public
+    function logout()
+    {
         Auth::logout();
         return redirect('/');
-    }
-    public function UserInfo(){
-        $user=Auth::user();
-        if($user)
-            return response()->json($user, 200);
-        return response()->json(['you'=>'not login'], 400);
     }
 }
