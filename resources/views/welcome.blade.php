@@ -32,15 +32,15 @@
     </nav>
 
     <!— This is the modal —>
-    <div id="modal-client" class="uk-flex-top" uk-modal>
-        <div class="uk-flex uk-margin-auto">
+    <div id="modal-client" uk-modal>
+        <div class="uk-flex uk-flex-center">
             <div id="regClient1" class="uk-card uk-card-default uk-card-hover uk-card-body uk-card-medium uk-width-large uk-margin-auto uk-margin-auto-vertical">
                 <button class="uk-modal-close-default" type="button" uk-close></button>
                 <ul class="uk-child-width-expand" data-uk-tab="{connect:'#auth'}" uk-tab>
-                    <li id="signupclient" class="uk-active"><a href="#">SIGNUP</a></li>
-                    <li id="loginclient"><a href="#">LOGIN</a></li>
+                    <li class="uk-active"><a href="#">SIGNUP</a></li>
+                    <li><a href="#">LOGIN</a></li>
                 </ul>
-                <ul id="auth" class="uk-switcher uk-margin">
+                <ul class="uk-switcher uk-margin">
                     <li>
                         <a href="/login/facebook">
                             <div id="rFB" class="uk-flex-middle uk-margin-small-top regHover" uk-grid>
@@ -76,7 +76,7 @@
                     </li>
                     <li>
                         <a href="login/facebook">
-                            <div id="lcFB" class="uk-flex-middle regHover" href="login/facebook" uk-grid>
+                            <div class="uk-flex-middle regHover" href="login/facebook" uk-grid>
                                 <div class="uk-width-1-4">
                                     <img src="/img/Xf8BBzEHtwM.jpg" alt="Image">
                                 </div>
@@ -86,7 +86,7 @@
                             </div>
                         </a>
                         <a href="login/vk">
-                            <div id="lcVK" class="uk-flex-middle uk-margin-small-top uk-margin-remove-bottom regHover" uk-grid>
+                            <div class="uk-flex-middle uk-margin-small-top uk-margin-remove-bottom regHover" uk-grid>
                                 <div class="uk-width-1-4">
                                     <img src="/img/56df0dbaee8c9153574da261.png" alt="Image">
                                 </div>
@@ -98,9 +98,6 @@
                         <hr class="uk-divider-icon">
                         <div class="uk-form-stacked">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <span id="logincl" class="help-block">
-                                <strong>{{ $errors->first('login') }}</strong>
-                            </span>
                             <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
                                     <input class="uk-input" placeholder="Email" id="emailloginclient" name="email" type="text">
@@ -111,55 +108,80 @@
                                     <input class="uk-input" placeholder="Password" id="passwordloginclient" name="password" type="password">
                                 </div>
                             </div>
-                            <div class="uk-text-center uk-margin-medium-bottom uk-margin-small-top"><a href="/reset_pass">forgot your password?</a></div>
-                            <button id="logclientbut" class="uk-button uk-button-primary uk-width-1-1 uk-button-large uk-position-bottom">LOG IN</button>
+                            <div class="uk-text-center uk-margin-medium-bottom uk-margin-small-top"><a id="forgotpassclient">forgot your password?</a></div>
+                            <button id='loginclientbut' class="uk-button uk-button-primary uk-width-1-1 uk-button-large uk-position-bottom">LOG IN</button>
                         </div>
                     </li>
                 </ul>
             </div>
-            <div id="regMail1" class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-auto uk-card-medium uk-width-large uk-margin-auto uk-modal-dialog uk-margin-auto-vertical">
-                <button class="uk-modal-close-default" type="button" uk-close></button>
-                <div class="uk-form-stacked">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <div class="uk-form-controls">
-                        <div class="uk-inline uk-width-1-1">
-                            <input class="uk-input" placeholder="Email" id="phoneregclient" name="email" type="text">
+            <div id="regMail1" class="uk-flex uk-margin-auto">
+                <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-card-large uk-width-large uk-margin-auto uk-margin-auto-vertical">
+                    <button class="uk-modal-close-default" type="button" uk-close></button>
+                    <div class="uk-form-stacked">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-1-1">
+                                <input class="uk-input" placeholder="Phone" name="email" id="phoneregclient" type="text">
+                            </div>
                         </div>
-                    </div>
-                    <div class="uk-form-controls">
-                        <div class="uk-inline uk-width-1-1">
-                            <input class="uk-input" placeholder="Email" id="emailregclient" name="email" type="text">
+                        <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-1-1">
+                                <input class="uk-input" placeholder="Email" name="email" id="emailregclient" type="text">
+                            </div>
                         </div>
-                    </div>
-                    <div class="uk-form-controls">
-                        <div class="uk-inline uk-width-1-1">
-                            <input class="uk-input" placeholder="name" id="first_nameregclient" name="first_name" type="text">
+                        <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-1-1">
+                                <input class="uk-input" placeholder="name" name="first_name" id="first_nameregclient" type="text">
+                            </div>
                         </div>
-                    </div>
-                    <div class="uk-form-controls">
-                        <div class="uk-inline uk-width-1-1">
-                            <input class="uk-input" placeholder="last name" id="second_nameregclient" name="second_name" type="text">
+                        <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-1-1">
+                                <input class="uk-input" placeholder="last name" name="second_name" id="second_nameregclient" type="text">
+                            </div>
                         </div>
-                    </div>
-                    <div class="uk-form-controls">
-                        <div class="uk-inline uk-width-1-1">
-                            <input class="uk-input" placeholder="Password" id="passwordregclient" name="password" type="password">
+                        <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-1-1">
+                                <input class="uk-input" placeholder="Password" name="passwordbis" id="passwordregclient" type="password">
+                            </div>
                         </div>
-                    </div>
-                    <div class="uk-form-controls">
-                        <div class="uk-inline uk-width-1-1">
-                            <input class="uk-input" placeholder="Confirm password" id="password_confirmationregclient" name="password_confirmation" type="password">
+                        <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-1-1">
+                                <input class="uk-input" placeholder="Confirm password" id="password_confirmationregclient" name="password_confirmation" type="password">
+                            </div>
                         </div>
+                        <div class="uk-text-center uk-margin-medium-bottom uk-margin-small-top"></div>
+                        <button id="regclientbut" class="uk-button uk-button-primary uk-width-1-1 uk-button-large uk-position-bottom">Register</button>
                     </div>
-                    <div class="uk-text-center uk-margin-medium-bottom uk-margin-small-top"></div>
-                    <button id="regclientbut" class="uk-button uk-button-primary uk-width-1-1 uk-button-large uk-position-bottom">Register</button>
+                </div>
+            </div>
+            <div id="sendlinkrec1" class="uk-flex uk-margin-auto">
+                <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-card-large uk-width-large uk-margin-auto uk-margin-auto-vertical">
+                    <button class="uk-modal-close-default" type="button" uk-close></button>
+                    <div class="uk-form-stacked">
+                        {{ csrf_field() }}
+
+                        <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-1-1">
+                                <input class="uk-input" placeholder="Email" id="resetpassclient" type="text">
+                            </div>
+                        </div>
+                        <button id="sendlinkrecclient" class="uk-button uk-button-primary uk-width-1-1 uk-button-large uk-position-bottom">Send link</button>
+                    </div>
+                </div>
+            </div>
+            <div id="sendletterclient" class="uk-flex uk-margin-auto">
+                <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-card-large uk-width-large uk-margin-auto uk-margin-auto-vertical">
+                    <button class="uk-modal-close-default" type="button" uk-close></button>
+                    <div class="uk-flex">
+                        <div class="uk-margin-auto"><strong>Письмо отправлено</strong></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div id="modal-buisness" uk-modal>
-        <div class="uk-flex uk-margin-auto">
-            <div id="regClient2" class="uk-card uk-card-default uk-card-hover uk-card-body uk-card-medium uk-width-large uk-margin-auto uk-margin-auto-vertical">
+        <div class="uk-flex uk-flex-center">
+            <div id="regClient2" class="uk-card uk-card-default uk-card-hover uk-card-body uk-card-medium uk-width-large">
                 <button class="uk-modal-close-default" type="button" uk-close></button>
                 <ul class="uk-child-width-expand" data-uk-tab="{connect:'#auth'}" uk-tab>
                     <li class="uk-active"><a href="#">SIGNUP</a></li>
@@ -233,7 +255,7 @@
                                     <input class="uk-input" placeholder="Password" id="passwordloginbis" name="password" type="password">
                                 </div>
                             </div>
-                            <div class="uk-text-center uk-margin-medium-bottom uk-margin-small-top"><a>forgot your password?</a></div>
+                            <div class="uk-text-center uk-margin-medium-bottom uk-margin-small-top"><a id="forgotpassbis">forgot your password?</a></div>
                             <button id='loginbisbut' class="uk-button uk-button-primary uk-width-1-1 uk-button-large uk-position-bottom">LOG IN</button>
                         </div>
                     </li>
@@ -276,6 +298,29 @@
                         </div>
                         <div class="uk-text-center uk-margin-medium-bottom uk-margin-small-top"></div>
                         <button id="regbisbut" class="uk-button uk-button-primary uk-width-1-1 uk-button-large uk-position-bottom">Register</button>
+                    </div>
+                </div>
+            </div>
+            <div id="sendlinkrec2" class="uk-flex uk-margin-auto">
+                <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-card-large uk-width-large uk-margin-auto uk-margin-auto-vertical">
+                    <button class="uk-modal-close-default" type="button" uk-close></button>
+                    <div class="uk-form-stacked">
+                        {{ csrf_field() }}
+
+                        <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-1-1">
+                                <input class="uk-input" placeholder="Email" id="resetpassbis" type="text">
+                            </div>
+                        </div>
+                        <button id="sendlinkrecbis" class="uk-button uk-button-primary uk-width-1-1 uk-button-large uk-position-bottom">Send link</button>
+                    </div>
+                </div>
+            </div>
+            <div id="sendletterbis" class="uk-flex uk-margin-auto">
+                <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-card-large uk-width-large uk-margin-auto uk-margin-auto-vertical">
+                    <button class="uk-modal-close-default" type="button" uk-close></button>
+                    <div class="uk-flex">
+                        <div class="uk-margin-auto"><strong>Письмо отправлено</strong></div>
                     </div>
                 </div>
             </div>

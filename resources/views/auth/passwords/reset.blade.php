@@ -1,67 +1,45 @@
+<!DOCTYPE html>
+<html>
 
-<div class="container">
-    <div class="row">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    {{ csrf_field() }}
+    <link rel="stylesheet" href="/css/uikit.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-card-medium uk-width-large uk-margin-auto uk-margin-auto-vertical">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
+            <div class="uk-flex uk-flex-center">
                 <div class="panel-heading">Reset Password</div>
+                <form class="uk-card uk-card-default uk-card-body" method="POST" action="/password/reset">
+                    {{ csrf_field() }}
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('password.request') }}">
-                        {{ csrf_field() }}
+                    <input type="hidden" name="token" value="{{ $token }}">
 
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                    <div class="uk-form-controls">
+                        <div class="uk-inline uk-width-1-1">
+                            <input class="uk-input" placeholder="Email" name="email" id="emailregclient" type="text">
                         </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                    </div>
+                    <div class="uk-form-controls">
+                        <div class="uk-inline uk-width-1-1">
+                            <input class="uk-input" placeholder="Password" name="password" id="passwordregclient" type="password">
                         </div>
-
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                    </div>
+                    <div class="uk-form-controls">
+                        <div class="uk-inline uk-width-1-1">
+                            <input class="uk-input" placeholder="Confirm password" id="password_confirmation" name="password_confirmation" type="password">
                         </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Reset Password
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="uk-text-center uk-margin-medium-bottom uk-margin-small-top"></div>
+                    <button id="regclientbut" class="uk-button uk-button-primary uk-width-1-1 uk-button-large uk-position-bottom" type="submit">Reset</button>
+                </form>
             </div>
         </div>
     </div>
-</div>
+</body>
+
+</html>
