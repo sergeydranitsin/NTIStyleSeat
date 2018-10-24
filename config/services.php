@@ -36,13 +36,13 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
     'facebook' => [
-	   'client_id' => '508529476278542', // App ID
-	   'client_secret' => '6fc397fd7178b69ae60b355fbaee27dd', // App Secret
+	   'client_id' => env('508529476278542'), // App ID
+	   'client_secret' => env('fb_secret'), // App Secret
 	   'redirect' => 'http://localhost:8000/register_clientSN/facebook', //Ссылка на перенаправление при удачной авторизации
     ],
     'vkontakte' => [
-	   'client_id' => '6726349', // App ID
-	   'client_secret' => '9T2ps5zmlMIlCkczSV6A', // App Secret
+	   'client_id' => env('vk_id'), // App ID
+	   'client_secret' => env('vk_secret'), // App Secret
 	   'redirect' => 'http://localhost:8000/register_clientSN/vkontakte', //Ссылка на перенаправление при удачной авторизации
     ],
 

@@ -33,7 +33,6 @@ Route::get('login/facebook', 'Authentication@redirectToFacebook');
 Route::get('login/vk', 'Authentication@redirectToVK');
 
 Route::post('/login/email', 'Authentication@login');
-Route::post('/register/emailClient', 'Authentication@registerClient');
 
 Route::get('/register_businessSN/{provider}', 'Authentication@BusinessSN');
 
