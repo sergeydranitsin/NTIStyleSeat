@@ -26,12 +26,13 @@ class BusinessController extends Controller
     /**
      * Returns view with search form and results.
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View view
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         /*
-        //TODO: use `with` for N+1 problem
-        //TODO: join all needed tables
+        //TODO use `with` for N+1 problem
+        //TODO join all needed tables
         $query = App\User::query();
 
         if ($request->has('name')){
@@ -43,22 +44,22 @@ class BusinessController extends Controller
         if ($request->has('$city')){
             $query->where('city', 'LIKE', $request->input('city'));
         }
-        //TODO: add date parameter
-        //TODO: pagination(50), OFFSET+LIMIT
+        //TODO add date parameter
+        //TODO pagination(50), OFFSET+LIMIT
         */
 
-        //TODO: accept text/html or application/json
+        //TODO accept text/html or application/json
         return view();
     }
 
     /**
      * Returns view for business user: name, portfolio, coordinates etc
      * @param mixed $id id of business user
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View view for business user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id){
         //TODO check is business
-        //TODO: return to view: name, portfolio, city+coordinates, description, categories, time, social media profiles, photos...
+        //TODO return to view: name, portfolio, city+coordinates, description, categories, time, social media profiles, photos...
         return view();
     }
 }
