@@ -135,35 +135,37 @@ class Authentication extends Controller
 
         return response()->json(['error' => $validator->errors()]);
     }
-}
+
 
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function BusinessSN($provider)
+    public
+    function BusinessSN($provider)
     {
-        $user=Socialite::driver($provider)->user();
-        if(!$user){
-            return response()->json(['error' => "unauth"]);}
+        $user = Socialite::driver($provider)->user();
+        if (!$user) {
+            return response()->json(['error' => "unauth"]);
+        }
 
-        if(!Auth::user()) {
-            $name=preg_split('/[\s,]+/',$user->getName());
-            $data=["first_name"=>$name[0],'second_name'=>$name[1],'email'=>$user->accessTokenResponseBody['email']];
+        if (!Auth::user()) {
+            $name = preg_split('/[\s,]+/', $user->getName());
+            $data = ["first_name" => $name[0], 'second_name' => $name[1], 'email' => $user->accessTokenResponseBody['email']];
 
             $validator = Validator::make($data, [
                 'first_name' => 'required|string|max:255',
                 'second_name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
             ]);
-            $data['social_id']=$user->getId();
+            $data['social_id'] = $user->getId();
             // validate request
             if ($validator->passes()) {
                 $u = User::create([
                     'email' => $data['email'],
                     'first_name' => $data['first_name'],
                     'second_name' => $data['second_name'],
-                    'social_id'=>$data['social_id'],
+                    'social_id' => $data['social_id'],
                     'is_business' => true
                 ]);
                 Auth::login($u);
@@ -174,54 +176,57 @@ class Authentication extends Controller
         }
     }
 
-    public function ClientSN($provider)
+    public
+    function ClientSN($provider)
     {
-      //  $data = $request->all();
-        $user=Socialite::driver($provider)->user();
-        if(!$user){
+        //  $data = $request->all();
+        $user = Socialite::driver($provider)->user();
+        if (!$user) {
             return response()->json(['error' => "unauth"]);
         }
-        $u = User::where('social_id',$user->getId())->first();
-        if($u) {
+        $u = User::where('social_id', $user->getId())->first();
+        if ($u) {
             Auth::login($u);
             return redirect('/');
         }
 
-        if(!Auth::user()) {
-            $name=preg_split('/[\s,]+/',$user->getName());
-            $data=["first_name"=>$name[0],'second_name'=>$name[1]];
-            if($provider=="vkontakte")
-                $data['email']=$user->accessTokenResponseBody['email'];
-            else $data['email']=$user->getEmail();
-             $validator = Validator::make($data, [
-                 'first_name' => 'required|string|max:255',
-                 'second_name' => 'required|string|max:255',
-                 'email' => 'required|string|email|max:255|unique:users',
-             ]);
-                $data['social_id']=$user->getId();
-             // validate request
-             if ($validator->passes()) {
-                 $u = User::create([
-                     'email' => $data['email'],
-                     'first_name' => $data['first_name'],
-                     'second_name' => $data['second_name'],
-                     'social_id'=>$data['social_id'],
-                     'is_business' => false
-                 ]);
-                 Auth::login($u);
+        if (!Auth::user()) {
+            $name = preg_split('/[\s,]+/', $user->getName());
+            $data = ["first_name" => $name[0], 'second_name' => $name[1]];
+            if ($provider == "vkontakte")
+                $data['email'] = $user->accessTokenResponseBody['email'];
+            else $data['email'] = $user->getEmail();
+            $validator = Validator::make($data, [
+                'first_name' => 'required|string|max:255',
+                'second_name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+            ]);
+            $data['social_id'] = $user->getId();
+            // validate request
+            if ($validator->passes()) {
+                $u = User::create([
+                    'email' => $data['email'],
+                    'first_name' => $data['first_name'],
+                    'second_name' => $data['second_name'],
+                    'social_id' => $data['social_id'],
+                    'is_business' => false
+                ]);
+                Auth::login($u);
 
-                 return redirect('/');
-             }
+                return redirect('/');
+            }
 
-             return response()->json(['error' => $validator->errors()]);
+            return response()->json(['error' => $validator->errors()]);
         }
     }
-        /**
+
+    /**
      * Redirect the user to the GitHub authentication page.
      *
      * @return \Illuminate\Http\Response
      */
-    public function redirectToFacebook()
+    public
+    function redirectToFacebook()
     {
         return Socialite::driver('facebook')->redirect();
     }
@@ -231,7 +236,8 @@ class Authentication extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function redirectToVK()
+    public
+    function redirectToVK()
     {
         return Socialite::driver('vkontakte')->redirect();
     }
@@ -241,7 +247,9 @@ class Authentication extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function logout(){
+    public
+    function logout()
+    {
         Auth::logout();
         return redirect('/');
     }
