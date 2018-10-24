@@ -1,98 +1,295 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html>
 
-        <title>Laravel</title>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    {{ csrf_field() }}
+    <link rel="stylesheet" href="/css/uikit.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+<body>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+    <!— This is a button toggling the modal —>
 
-            .full-height {
-                height: 100vh;
-            }
+    <nav class="uk-navbar-container" uk-navbar>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+        <div class="uk-navbar-right">
+            <?php if(auth()->guard()->guest()): ?>
 
-            .position-ref {
-                position: relative;
-            }
+            <ul class="uk-navbar-nav">
+                <li> <a id="openModal1" class="uk-button uk-margin-small-right" type="button" uk-toggle="target: #modal-client">SignIN client</a></li>
+                <li> <a id="openModal2" class="uk-button uk-margin-small-right" type="button" uk-toggle="target: #modal-buisness">SignIN buisness</a></li>
+            </ul>
+            <?php else: ?>
+            <ul class="uk-navbar-nav">
+                <li> <a class="uk-button uk-margin-small-right" type="button" href="logout">logout</a></li>
+            </ul>
+            <?php endif; ?>
+        </div>
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+    </nav>
 
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+    <!— This is the modal —>
+    <div id="modal-client" class="uk-flex-top" uk-modal>
+        <div id="regClient1" class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-auto uk-card-medium uk-width-large uk-margin-auto uk-modal-dialog uk-margin-auto-vertical">
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <ul class="uk-child-width-expand" data-uk-tab="{connect:'#auth'}" uk-tab>
+                <li id="signupclient" class="uk-active"><a href="#">SIGNUP</a></li>
+                <li id="loginclient"><a href="#">LOGIN</a></li>
+            </ul>
+            <ul id="auth" class="uk-switcher uk-margin">
+                <li id="clientsignup">
+                    <a href="/login/facebook">
+                        <div id="rFB" class="uk-flex-middle uk-margin-small-top regHover" uk-grid>
+                            <div class="uk-width-1-4">
+                                <img src="/img/Xf8BBzEHtwM.jpg" alt="Image">
+                            </div>
+                            <div class="uk-width-3-4">
+                                <p>with facebook</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/login/vk">
+                        <div id="rVK" class="uk-flex-middle uk-margin-small-top regHover" uk-grid>
+                            <div class="uk-width-1-4">
+                                <img src="/img/56df0dbaee8c9153574da261.png" alt="Image">
+                            </div>
+                            <div class="uk-width-3-4">
+                                <p>with VK</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div id="regEmail1" class="uk-flex-middle uk-margin-small-top regHover" uk-grid>
+                            <div class="uk-width-1-4">
+                                <img src="/img/Sni1mok.svg" alt="Image">
+                            </div>
+                            <div class="uk-width-3-4">
+                                <p>with email</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="uk-text-center uk-margin-small-top uk-margin-remove-bottom uk-text-small">By signing up I agree to the Terms of Service and <a>Privacy Policy</a></div>
+                </li>
+                <li id="clientlogin">
+                    <a href="login/facebook">
+                        <div id="lFB" class="uk-flex-middle regHover" href="login/facebook" uk-grid>
+                            <div class="uk-width-1-4">
+                                <img src="/img/Xf8BBzEHtwM.jpg" alt="Image">
+                            </div>
+                            <div class="uk-width-3-4">
+                                <p>Login with facebook?</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="login/vk">
+                        <div id="lVK" class="uk-flex-middle uk-margin-small-top uk-margin-remove-bottom regHover" uk-grid>
+                            <div class="uk-width-1-4">
+                                <img src="/img/56df0dbaee8c9153574da261.png" alt="Image">
+                            </div>
+                            <div class="uk-width-3-4">
+                                <p>Login with VK?</p>
+                            </div>
+                        </div>
+                    </a>
+                    <hr class="uk-divider-icon">
+                    <form class="uk-form-stacked" action="/login/email" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        @if ($errors->has('login'))
+                        <span id="logincl" class="help-block">
+                            <strong>{{ $errors->first('login') }}</strong>
+                        </span>
                         @endif
-                    @endauth
+                        <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-1-1">
+                                <input class="uk-input" placeholder="Email" id="email" name="email" type="text">
+                            </div>
+                        </div>
+                        <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-1-1">
+                                <input class="uk-input" placeholder="Password" id="password" name="password" type="password">
+                            </div>
+                        </div>
+                        <div class="uk-text-center uk-margin-medium-bottom uk-margin-small-top"><a href="/reset_pass">forgot your password?</a></div>
+                        <button class="uk-button uk-button-primary uk-width-1-1 uk-button-large uk-position-bottom" type="submit">LOG IN</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+        <div id="regMail1" class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-auto uk-card-medium uk-width-large uk-margin-auto uk-modal-dialog uk-margin-auto-vertical">
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <form class="uk-form-stacked" action="/register/emailClient" method="post">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                @if ($errors->has('regClient'))
+                <span id="regclient" class="help-block">
+                    <strong>{{$errors->first('regClient')}}</strong>
+                </span>
+                @endif
+                <div class="uk-form-controls">
+                    <div class="uk-inline uk-width-1-1">
+                        <input class="uk-input" placeholder="Email" id="email" name="email" type="text">
+                    </div>
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div class="uk-form-controls">
+                    <div class="uk-inline uk-width-1-1">
+                        <input class="uk-input" placeholder="name" id="first_name" name="first_name" type="text">
+                    </div>
                 </div>
+                <div class="uk-form-controls">
+                    <div class="uk-inline uk-width-1-1">
+                        <input class="uk-input" placeholder="last name" id="second_name" name="second_name" type="text">
+                    </div>
+                </div>
+                <div class="uk-form-controls">
+                    <div class="uk-inline uk-width-1-1">
+                        <input class="uk-input" placeholder="Password" id="password" name="password" type="password">
+                    </div>
+                </div>
+                <div class="uk-form-controls">
+                    <div class="uk-inline uk-width-1-1">
+                        <input class="uk-input" placeholder="Confirm password" id="password_confirmation" name="password_confirmation" type="password">
+                    </div>
+                </div>
+                <div class="uk-text-center uk-margin-medium-bottom uk-margin-small-top"></div>
+                <button class="uk-button uk-button-primary uk-width-1-1 uk-button-large uk-position-bottom" type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+    <div id="modal-buisness" uk-modal>
+        <div class="uk-flex uk-margin-auto">
+            <div id="regClient2" class="uk-card uk-card-default uk-card-hover uk-card-body uk-card-medium uk-width-large uk-margin-auto uk-margin-auto-vertical">
+                <button id="closeModal" class="uk-modal-close-default" type="button" uk-close></button>
+                <ul class="uk-child-width-expand" data-uk-tab="{connect:'#auth'}" uk-tab>
+                    <li class="uk-active"><a href="#">SIGNUP</a></li>
+                    <li><a href="#">LOGIN</a></li>
+                </ul>
+                <ul id="auth" class="uk-switcher uk-margin">
+                    <li>
+                        <a href="/login/facebook">
+                            <div id="rFB" class="uk-flex-middle uk-margin-small-top regHover" uk-grid>
+                                <div class="uk-width-1-4">
+                                    <img src="/img/Xf8BBzEHtwM.jpg" alt="Image">
+                                </div>
+                                <div class="uk-width-3-4">
+                                    <p>with facebook</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="/login/vk">
+                            <div id="rVK" class="uk-flex-middle uk-margin-small-top regHover" uk-grid>
+                                <div class="uk-width-1-4">
+                                    <img src="/img/56df0dbaee8c9153574da261.png" alt="Image">
+                                </div>
+                                <div class="uk-width-3-4">
+                                    <p>with VK</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div id="regEmail2" class="uk-flex-middle uk-margin-small-top regHover" uk-grid>
+                                <div class="uk-width-1-4">
+                                    <img src="/img/Sni1mok.svg" alt="Image">
+                                </div>
+                                <div class="uk-width-3-4">
+                                    <p>with email</p>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="uk-text-center uk-margin-small-top uk-margin-remove-bottom uk-text-small">By signing up I agree to the Terms of Service and <a>Privacy Policy</a></div>
+                    </li>
+                    <li>
+                        <a href="login/facebook">
+                            <div id="lFB" class="uk-flex-middle regHover" href="login/facebook" uk-grid>
+                                <div class="uk-width-1-4">
+                                    <img src="/img/Xf8BBzEHtwM.jpg" alt="Image">
+                                </div>
+                                <div class="uk-width-3-4">
+                                    <p>Login with facebook?</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="login/vk">
+                            <div id="lVK" class="uk-flex-middle uk-margin-small-top uk-margin-remove-bottom regHover" uk-grid>
+                                <div class="uk-width-1-4">
+                                    <img src="/img/56df0dbaee8c9153574da261.png" alt="Image">
+                                </div>
+                                <div class="uk-width-3-4">
+                                    <p>Login with VK?</p>
+                                </div>
+                            </div>
+                        </a>
+                        <hr class="uk-divider-icon">
+                        <form class="uk-form-stacked" action="/login/email" method="post">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            @if ($errors->has('login'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('login')}}</strong>
+                            </span>
+                            @endif
+                            <div class="uk-form-controls">
+                                <div class="uk-inline uk-width-1-1">
+                                    <input class="uk-input" placeholder="Email" id="email" name="email" type="text">
+                                </div>
+                            </div>
+                            <div class="uk-form-controls">
+                                <div class="uk-inline uk-width-1-1">
+                                    <input class="uk-input" placeholder="Password" id="password" name="password" type="password">
+                                </div>
+                            </div>
+                            <div class="uk-text-center uk-margin-medium-bottom uk-margin-small-top"><a>forgot your password?</a></div>
+                            <button class="uk-button uk-button-primary uk-width-1-1 uk-button-large uk-position-bottom" type="submit">LOG IN</button>
+                        </form>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="regMail2" class="uk-flex uk-margin-auto">
+                <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-card-large uk-width-large uk-margin-auto uk-margin-auto-vertical">
+                    <button class="uk-modal-close-default" type="button" uk-close></button>
+                    <form class="uk-form-stacked" action="/register/emailClient" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        @if ($errors->has('regBusiness'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('regBusiness')}}</strong>
+                        </span>
+                        @endif
+                        <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-1-1">
+                                <input class="uk-input" placeholder="Email" id="email" name="email" type="text">
+                            </div>
+                        </div>
+                        <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-1-1">
+                                <input class="uk-input" placeholder="name" id="first_name" name="first_name" type="text">
+                            </div>
+                        </div>
+                        <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-1-1">
+                                <input class="uk-input" placeholder="last name" id="second_name" name="second_name" type="text">
+                            </div>
+                        </div>
+                        <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-1-1">
+                                <input class="uk-input" placeholder="Password" id="password" name="password" type="password">
+                            </div>
+                        </div>
+                        <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-1-1">
+                                <input class="uk-input" placeholder="Confirm password" id="password_confirmation" name="password_confirmation" type="password">
+                            </div>
+                        </div>
+                        <div class="uk-text-center uk-margin-medium-bottom uk-margin-small-top"></div>
+                        <button class="uk-button uk-button-primary uk-width-1-1 uk-button-large uk-position-bottom" type="submit">Register</button>
+                    </form>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src='/js/uikit.js'></script>
+<script src='/js/script.js'></script>
+
 </html>
