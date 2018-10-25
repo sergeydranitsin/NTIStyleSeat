@@ -28,3 +28,5 @@ Route::post('/register_business', 'Authentication@registerBusiness');
 Route::get('/register_client', 'Authentication@getRegisterClientForm');
 Route::post('/register_client', 'Authentication@registerClient');
 
+Route::get('/professionals', 'BusinessController@index');
+Route::get('/professionals/{id}', 'BusinessController@show');

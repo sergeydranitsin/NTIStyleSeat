@@ -48,18 +48,20 @@ class BusinessController extends Controller
         //TODO pagination(50), OFFSET+LIMIT
         */
 
-        //TODO accept text/html or application/json
         return view();
     }
 
     /**
      * Returns view for business user: name, portfolio, coordinates etc
-     * @param mixed $id id of business user
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param Request $request
+     * @param User $user business user to show
+     * @return mixed
      */
-    public function show($id){
-        //TODO check is business
+    public function show(Request $request, User $user){
+        if (!$user->is_business){
+            return response()->json(['error' => 'Not business user'],400);
+        } //TODO create middleware
         //TODO return to view: name, portfolio, city+coordinates, description, categories, time, social media profiles, photos...
-        return view();
+        return "Ok";
     }
 }
