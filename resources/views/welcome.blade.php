@@ -33,7 +33,7 @@
 
     <!— This is the modal —>
     <div id="modal-client" uk-modal>
-        <div class="uk-flex uk-flex-center">
+        <div class="uk-flex uk-flex uk-height-medium uk-margin uk-margin-auto uk-margin-auto-vertical" style="margin-top:calc(17vh)!important">
             <div id="regClient1" class="uk-card uk-card-default uk-card-hover uk-card-body uk-card-medium uk-width-large uk-margin-auto uk-margin-auto-vertical">
                 <button class="uk-modal-close-default" type="button" uk-close></button>
                 <ul class="uk-child-width-expand" data-uk-tab="{connect:'#auth'}" uk-tab>
@@ -120,8 +120,13 @@
                     <div class="uk-form-stacked">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-1-1 uk-text-center">
+                                REGISTRATION
+                            </div>
+                        </div>
+                        <div class="uk-form-controls">
                             <div class="uk-inline uk-width-1-1">
-                                <input class="uk-input" placeholder="Phone" name="email" id="phoneregclient" type="text">
+                                <input class="uk-input" placeholder="Phone" name="email" id="mobile_phoneregclient" type="text">
                             </div>
                         </div>
                         <div class="uk-form-controls">
@@ -159,7 +164,9 @@
                     <button class="uk-modal-close-default" type="button" uk-close></button>
                     <div class="uk-form-stacked">
                         {{ csrf_field() }}
-
+                        <div class="uk-inline uk-width-1-1 uk-text-center">
+                            ENTER EMAIL
+                        </div>
                         <div class="uk-form-controls">
                             <div class="uk-inline uk-width-1-1">
                                 <input class="uk-input" placeholder="Email" id="resetpassclient" type="text">
@@ -180,7 +187,7 @@
         </div>
     </div>
     <div id="modal-buisness" uk-modal>
-        <div class="uk-flex uk-flex-center">
+        <div class="uk-flex uk-flex-center" style="margin-top:calc(17vh)!important">
             <div id="regClient2" class="uk-card uk-card-default uk-card-hover uk-card-body uk-card-medium uk-width-large">
                 <button class="uk-modal-close-default" type="button" uk-close></button>
                 <ul class="uk-child-width-expand" data-uk-tab="{connect:'#auth'}" uk-tab>
@@ -261,14 +268,17 @@
                     </li>
                 </ul>
             </div>
-            <div id="regMail2" class="uk-flex uk-margin-auto">
+            <div id="regMail2" class="uk-flex uk-height-medium uk-background-muted uk-margin uk-text-center">
                 <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-card-large uk-width-large uk-margin-auto uk-margin-auto-vertical">
                     <button class="uk-modal-close-default" type="button" uk-close></button>
                     <div class="uk-form-stacked">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="uk-inline uk-width-1-1 uk-text-center">
+                            REGISTRATION
+                        </div>
                         <div class="uk-form-controls">
                             <div class="uk-inline uk-width-1-1">
-                                <input class="uk-input" placeholder="Phone" name="email" id="phoneregbis" type="text">
+                                <input class="uk-input" placeholder="Phone" name="email" id="mobile_phoneregbis" type="text">
                             </div>
                         </div>
                         <div class="uk-form-controls">
@@ -306,7 +316,9 @@
                     <button class="uk-modal-close-default" type="button" uk-close></button>
                     <div class="uk-form-stacked">
                         {{ csrf_field() }}
-
+                        <div class="uk-inline uk-width-1-1">
+                            ENTER EMAIL
+                        </div>
                         <div class="uk-form-controls">
                             <div class="uk-inline uk-width-1-1">
                                 <input class="uk-input" placeholder="Email" id="resetpassbis" type="text">

@@ -72,7 +72,7 @@ class Authentication extends Controller
         $data = $request->all();
 
         $validator = Validator::make($data, [
-            'mobile_phone' => 'string|max:255',
+            'mobile_phone' => 'string|regex:/^[0-9]{10}$/',
             'first_name' => 'required|string|max:255',
             'second_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -111,7 +111,7 @@ class Authentication extends Controller
         $data = $request->all();
 
         $validator = Validator::make($data, [
-            'mobile_phone' => 'string|max:255',
+            'mobile_phone' => 'string|regex:/^[0-9]{10}$/',
             'first_name' => 'required|string|max:255',
             'second_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
