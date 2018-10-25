@@ -14,7 +14,7 @@ class CreateProfileData extends Migration
     public function up()
     {
         Schema::create('profile_data', function(Blueprint $table){
-            $table->increments('user_id');
+            $table->integer('user_id')->unsigned();
             $table->string('avatar')->nullable();
             $table->string('header')->nullable();
             $table->string('photos')->nullable();

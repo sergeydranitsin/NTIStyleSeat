@@ -14,7 +14,7 @@ class CreateUpcomingHours extends Migration
     public function up()
     {
         Schema::create('upcoming_hours',function (Blueprint $table){
-            $table->increments('user_id');
+            $table->integer('user_id')->unsigned();
             $table->date('date');
             $table->time('start_time');
             $table->time('end_time');
