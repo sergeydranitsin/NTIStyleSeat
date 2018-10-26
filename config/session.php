@@ -153,7 +153,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN', "127.0.0.1"),
+    'domain' => env('SESSION_DOMAIN', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -166,7 +166,7 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE', "127.0.0.1"),
+    'secure' => env('SESSION_SECURE_COOKIE', false),
 
     /*
     |--------------------------------------------------------------------------

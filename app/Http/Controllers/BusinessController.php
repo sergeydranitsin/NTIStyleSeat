@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-
+use Illuminate\Support\Facades\Auth;
 /**
  * Class BusinessController
  * @package App\Http\Controllers
@@ -47,7 +47,6 @@ class BusinessController extends Controller
         //TODO add date parameter
         //TODO pagination(50), OFFSET+LIMIT
         */
-
         return view();
     }
 

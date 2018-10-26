@@ -14,7 +14,6 @@
     <!— This is a button toggling the modal —>
 
     <nav class="uk-navbar-container" uk-navbar>
-
         <div class="uk-navbar-right">
             <?php if(auth()->guard()->guest()): ?>
 
