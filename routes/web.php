@@ -30,3 +30,20 @@ Route::post('/register_client', 'Authentication@registerClient');
 
 Route::get('/professionals', 'BusinessController@index');
 Route::get('/professionals/{id}', 'BusinessController@show');
+
+Route::get('login/facebook', 'Authentication@redirectToFacebook');
+Route::get('login/vk', 'Authentication@redirectToVK');
+
+Route::post('/login/email', 'Authentication@login');
+
+Route::get('/register_businessSN/{provider}', 'Authentication@BusinessSN');
+
+Route::get('/register_clientSN/{provider}', 'Authentication@ClientSN');
+Route::get('/logout', 'Authentication@logout');
+
+
+//восстановление пароля
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');

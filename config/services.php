@@ -35,5 +35,15 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'facebook' => [
+	   'client_id' => env('fb_id'), // App ID
+	   'client_secret' => env('fb_secret'), // App Secret
+	   'redirect' => 'http://localhost:8000/register_clientSN/facebook', //Ссылка на перенаправление при удачной авторизации
+    ],
+    'vkontakte' => [
+	   'client_id' => env('vk_id'), // App ID
+	   'client_secret' => env('vk_secret'), // App Secret
+	   'redirect' => 'http://localhost:8000/register_clientSN/vkontakte', //Ссылка на перенаправление при удачной авторизации
+    ],
 
 ];
