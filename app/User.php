@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
+    public $table='users';
+    public $primaryKey='id';
 
     /**
      * The attributes that are mass assignable.
@@ -27,4 +29,28 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function profile_data(){
+        return $this->belongsTo('App\Profile_data', 'id', 'user_id');
+    }
+
+    public function weekly_worktime(){
+        return $this->belongsTo('App\Weekly_worktime', 'id', 'user_id');
+    }
+
+    public function vocation(){
+        return $this->belongsTo('App\Vocation', 'id', 'user_id');
+    }
+
+    public function appointments(){
+        return $this->belongsTo('App\Appointments', 'id', 'user_id');
+    }
+
+    public function upcoming_hours(){
+        return $this->belongsTo('App\Upcoming_hours', 'id', 'user_id');
+    }
+
+    public function users_services(){
+        return $this->belongsTo('App\Users_services', 'id', 'user_id');
+    }
 }
