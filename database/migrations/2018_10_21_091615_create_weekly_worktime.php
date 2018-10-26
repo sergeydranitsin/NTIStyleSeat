@@ -14,7 +14,7 @@ class CreateWeeklyWorktime extends Migration
     public function up()
     {
         Schema::create('weekly_worktime', function (Blueprint $table){
-           $table->increments('user_id');
+           $table->integer('user_id')->unsigned();
            $table->string('weekday');
            $table->time('start_time');
            $table->time('end_time');

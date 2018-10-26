@@ -5,14 +5,14 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class Profile_data extends Model
+class Upcoming_hours extends Model
 {
     use Notifiable;
-    public $table="profile_data";
-    public $primaryKey='user_id';
+    public $table = 'upcoming_hours';
+    public $primaryKey = ' user_id';
 
     protected $fillable = [
-        'avatar', 'header', 'photos', 'coords', 'address'
+        'date', 'start_time', 'end_time', 'start_break_time', 'end_break_time'
     ];
 
     public function user(){

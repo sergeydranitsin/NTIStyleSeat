@@ -30,21 +30,27 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function get_profile_data(){
-        return $this->belongsTo('App\Profile_data', 'user_id', 'id');
+    public function profile_data(){
+        return $this->belongsTo('App\Profile_data', 'id', 'user_id');
     }
 
-    public function get_weekly_worktime(){
-        return $this->belongsTo('App\Weekly_worktime', 'user_id', 'id');
+    public function weekly_worktime(){
+        return $this->belongsTo('App\Weekly_worktime', 'id', 'user_id');
     }
 
-    public function get_vocation(){
-        return $this->belongsTo('App\Vocation', 'user_id', 'id');
+    public function vocation(){
+        return $this->belongsTo('App\Vocation', 'id', 'user_id');
     }
 
-    public function get_ppointments(){
-        return $this->belongsTo('App\Appointments', 'client_id', 'id');
+    public function appointments(){
+        return $this->belongsTo('App\Appointments', 'id', 'user_id');
     }
 
+    public function upcoming_hours(){
+        return $this->belongsTo('App\Upcoming_hours', 'id', 'user_id');
+    }
 
+    public function users_services(){
+        return $this->belongsTo('App\Users_services', 'id', 'user_id');
+    }
 }

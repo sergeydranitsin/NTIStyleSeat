@@ -14,7 +14,7 @@ class CreateVacation extends Migration
     public function up()
     {
         Schema::create('vocation', function (Blueprint $table){
-            $table->increments('user_id');
+            $table->integer('user_id')->unsigned();
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamps();
