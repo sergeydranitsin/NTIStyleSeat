@@ -7,6 +7,10 @@
     {{ csrf_field() }}
     <link rel="stylesheet" href="/css/uikit.css">
     <link rel="stylesheet" href="/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src='/js/uikit.js'></script>
+    <script src='/js/script.js'></script>
+
 </head>
 
 <body>
@@ -338,8 +342,5 @@
         </div>
     </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src='/js/uikit.js'></script>
-<script src='/js/script.js'></script>
 
 </html>
