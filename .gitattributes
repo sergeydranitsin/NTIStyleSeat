@@ -4,3 +4,4 @@
 *.js linguist-vendored
 CHANGELOG.md export-ignore
 package-lock.json merge=ours
+.gitignore merge=ours
