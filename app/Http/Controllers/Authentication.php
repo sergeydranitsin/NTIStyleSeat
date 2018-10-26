@@ -49,7 +49,7 @@ class Authentication extends Controller
                 return response()->json(['success' => 'User logged in.']);
             }
 
-            return response()->json(['error' => ['password' => 'The password is wrong.']]);
+            return response()->json(['error' => ['password' => ['The password is wrong.']]]);
         }
 
         return response()->json(['error' => $validator->errors()]);
