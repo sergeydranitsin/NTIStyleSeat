@@ -57,10 +57,6 @@ class BusinessController extends Controller
      * @return mixed
      */
     public function show(Request $request, User $user){
-        if (!$user->is_business){ //TODO check is exists
-            return response()->json(['error' => 'Not business user'],400);
-        } //TODO create middleware
-        //TODO return to view: name, portfolio, city+coordinates, description, categories, time, social media profiles, photos...
-        return "Ok";
+        return $user; //TODO free time
     }
 }
