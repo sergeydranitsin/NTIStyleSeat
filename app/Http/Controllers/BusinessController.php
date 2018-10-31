@@ -57,6 +57,7 @@ class BusinessController extends Controller
      * @return mixed
      */
     public function show(Request $request, User $user){
+        if(!$user->is_business) abort (404);
         return $user; //TODO free time
     }
 }
