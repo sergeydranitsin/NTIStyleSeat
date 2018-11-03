@@ -37,20 +37,25 @@ class BusinessController extends Controller
         //TODO use `with` for N+1 problem
         //TODO join all needed tables
         $query = BusinessUser::query();
-        if ($request->has('name')){
-            $query->where('name', 'LIKE', $request->input('name'));
+        if ($request->has('name')){ //TODO first + last name
+            $query->where('first_name', 'LIKE', $request->input('name'));
         }
-        if ($request->has('$category_id')){
+        if ($request->has('category_id')){
             $query->where('category_id', '=', $request->input('category_id'));
         }
-        if ($request->has('$city')){
-            $query->where('city', 'LIKE', $request->input('city'));
+        if ($request->has('city')){
+            $query->where('address', 'LIKE', $request->input('city'));
         }
         //TODO add date parameter
 
         if ($is_json){
-            //TODO pagination(50), OFFSET+LIMIT
-            return $query->get();
+            $limit = $query->count();
+
+            $offset = $request->has('offset') ? $request->input('offset') : 0;
+            $users = $query->offset($offset)->limit($per_page)->get();
+            $on_this_page = count($users);
+
+            return compact('users', 'offset', 'limit', 'on_this_page' );
         }
         else {
             $query->paginate($per_page);
