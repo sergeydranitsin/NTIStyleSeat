@@ -31,11 +31,12 @@ class BusinessController extends Controller
      */
     public function index(Request $request)
     {
-        /*
+        $per_page = 50;
+        $is_json = $request->has('json');
+
         //TODO use `with` for N+1 problem
         //TODO join all needed tables
-        $query = App\User::query();
-
+        $query = BusinessUser::query();
         if ($request->has('name')){
             $query->where('name', 'LIKE', $request->input('name'));
         }
@@ -46,9 +47,15 @@ class BusinessController extends Controller
             $query->where('city', 'LIKE', $request->input('city'));
         }
         //TODO add date parameter
-        //TODO pagination(50), OFFSET+LIMIT
-        */
-        return "Not Implemented";
+
+        if ($is_json){
+            //TODO pagination(50), OFFSET+LIMIT
+            return $query->get();
+        }
+        else {
+            $query->paginate($per_page);
+            return "View not implemented";
+        }
     }
 
     /**
