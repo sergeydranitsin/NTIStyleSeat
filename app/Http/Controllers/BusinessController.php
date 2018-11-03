@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\UserExtensions\BusinessUser;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,7 @@ class BusinessController extends Controller
     /**
      * Returns view with search form and results.
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return string
      */
     public function index(Request $request)
     {
@@ -47,17 +48,18 @@ class BusinessController extends Controller
         //TODO add date parameter
         //TODO pagination(50), OFFSET+LIMIT
         */
-        return view();
+        return "Not Implemented";
     }
 
     /**
      * Returns view for business user: name, portfolio, coordinates etc
      * @param Request $request
-     * @param User $user business user to show
+     * @param BusinessUser $businessUser
      * @return mixed
      */
-    public function show(Request $request, User $user){
-        if(!$user->is_business) abort (404);
-        return $user; //TODO free time
+    public function show(Request $request, BusinessUser $businessUser){
+        //TODO free time
+        //TODO send ALL data including relationships
+        return $businessUser;
     }
 }
