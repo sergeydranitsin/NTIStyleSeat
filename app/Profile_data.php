@@ -12,10 +12,10 @@ class Profile_data extends Model
     public $primaryKey='user_id';
 
     protected $fillable = [
-        'avatar', 'header', 'photos', 'coords', 'address'
+        'avatar', 'header', 'photos', 'coords', 'address', 'city'
     ];
 
     public function user(){
-        return $this->hasOne('App\User', 'user_id', 'id');
+        return $this->belongsTo('App\User', 'user_id', 'id');
     }
 }

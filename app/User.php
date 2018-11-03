@@ -33,7 +33,7 @@ class User extends Authenticatable
     ];
 
     public function profile_data(){
-        return $this->belongsTo('App\Profile_data', 'id', 'user_id');
+        return $this->hasOne('App\Profile_data', 'user_id', 'id');
     }
 
     public function weekly_worktime(){

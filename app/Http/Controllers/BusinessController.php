@@ -6,6 +6,8 @@ use App\UserExtensions\BusinessUser;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 /**
  * Class BusinessController
  * @package App\Http\Controllers
@@ -35,15 +37,16 @@ class BusinessController extends Controller
         $is_json = $request->has('json');
 
         $query = BusinessUser::with('profile_data', 'weekly_worktime', 'vocation', 'upcoming_hours', 'appointments', 'users_services');
-        if ($request->has('name')){ //TODO first + last name
-            $query->where('first_name', 'LIKE', $request->input('name'));
+        if ($request->has('name')){
+            $name = $request->input('name');
+            $query->where(DB::raw("CONCAT(first_name, ' ', second_name)"), 'LIKE', "%{$name}%");
         }
         if ($request->has('category_id')){
             $query->where('category_id', '=', $request->input('category_id'));
         }
-        if ($request->has('city')){ //TODO (city in search by coords not by address) OR (add field 'city' to profile_data)
+        if ($request->has('city')){
             $city = $request->input('city');
-            $query->where('address', 'LIKE', '%'.$city.'%');
+            $query->where('city', 'LIKE', "%{$city}%");
         }
         //TODO add date parameter
 
