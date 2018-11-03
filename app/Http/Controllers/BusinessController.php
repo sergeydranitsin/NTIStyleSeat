@@ -36,7 +36,7 @@ class BusinessController extends Controller
         $per_page = 50;
         $is_json = $request->has('json');
 
-        $query = BusinessUser::with('profile_data', 'weekly_worktime', 'vocation', 'upcoming_hours', 'appointments', 'users_services');
+        $query = BusinessUser::with('profile_data', 'weekly_worktime', 'vocation', 'upcoming_hours', 'appointments', 'users_services', 'users_services.services');
         if ($request->has('name')){
             $name = $request->input('name');
             $query->where(DB::raw("CONCAT(first_name, ' ', second_name)"), 'LIKE', "%{$name}%");
@@ -72,8 +72,14 @@ class BusinessController extends Controller
      * @return mixed
      */
     public function show(Request $request, BusinessUser $businessUser){
+        $is_json = $request->has('json');
+        $businessUser->load('profile_data', 'weekly_worktime', 'vocation', 'upcoming_hours', 'appointments', 'users_services', 'users_services.services', 'users_services.services.categories');
         //TODO count free time
-        //TODO send ALL data including relationships
-        return $businessUser;
+        if ($is_json) {
+            return $businessUser;
+        }
+        else {
+            return "View not implemented";
+        }
     }
 }
