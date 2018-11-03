@@ -12,4 +12,9 @@ class ClientUser extends User
 
         static::addGlobalScope(new ClientScope);
     }
+
+    public function appointments(){
+        return $this->belongsTo('App\Appointments', 'id', 'client_id');
+    }
+
 }

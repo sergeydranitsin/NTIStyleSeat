@@ -12,4 +12,9 @@ class BusinessUser extends User
 
         static::addGlobalScope(new BusinessScope);
     }
+
+    public function appointments(){
+        return $this->hasManyThrough('App\Appointments', 'App\Users_Services', 'user_id', 'user_service_id');
+    }
+
 }

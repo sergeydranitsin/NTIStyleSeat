@@ -34,9 +34,7 @@ class BusinessController extends Controller
         $per_page = 50;
         $is_json = $request->has('json');
 
-        //TODO use `with` for N+1 problem
-        //TODO join all needed tables
-        $query = BusinessUser::query();
+        $query = BusinessUser::with('profile_data', 'weekly_worktime', 'vocation', 'upcoming_hours', 'appointments', 'users_services');
         if ($request->has('name')){ //TODO first + last name
             $query->where('first_name', 'LIKE', $request->input('name'));
         }
@@ -70,7 +68,7 @@ class BusinessController extends Controller
      * @return mixed
      */
     public function show(Request $request, BusinessUser $businessUser){
-        //TODO free time
+        //TODO count free time
         //TODO send ALL data including relationships
         return $businessUser;
     }
