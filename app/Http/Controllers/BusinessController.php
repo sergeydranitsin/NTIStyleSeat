@@ -41,8 +41,9 @@ class BusinessController extends Controller
         if ($request->has('category_id')){
             $query->where('category_id', '=', $request->input('category_id'));
         }
-        if ($request->has('city')){
-            $query->where('address', 'LIKE', $request->input('city'));
+        if ($request->has('city')){ //TODO (city in search by coords not by address) OR (add field 'city' to profile_data)
+            $city = $request->input('city');
+            $query->where('address', 'LIKE', '%'.$city.'%');
         }
         //TODO add date parameter
 
