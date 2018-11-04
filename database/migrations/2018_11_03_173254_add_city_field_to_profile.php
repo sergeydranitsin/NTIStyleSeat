@@ -13,7 +13,7 @@ class AddCityFieldToProfile extends Migration
      */
     public function up()
     {
-        Schema::table('profile_data', function($table) {
+        Schema::table('profile_data', function(Blueprint $table) {
             $table->string('city');
         });
     }
@@ -25,7 +25,7 @@ class AddCityFieldToProfile extends Migration
      */
     public function down()
     {
-        Schema::table('profile_data', function($table) {
+        Schema::table('profile_data', function(Blueprint $table) {
             $table->dropColumn('city');
         });
     }
