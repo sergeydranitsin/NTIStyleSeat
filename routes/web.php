@@ -16,6 +16,9 @@ Route::get('/', function () {
 });
 
 
+Route::get('/profile', function () {
+    return view('profile');
+});
 Route::get('/get_user', 'Authentication@getUser');
 
 Route::get('/login', 'Authentication@getLoginForm');

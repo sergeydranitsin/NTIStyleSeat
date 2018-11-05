@@ -1,21 +1,6 @@
 <div id="modal-worktime" uk-modal>
     <div class="uk-card uk-card-default uk-card-hover uk-card-large uk-width-large uk-margin-auto uk-margin-auto-vertical">
-            <div class="uk-flex">
-        <div class="uk-margin-left uk-margin-auto">
-            <ul class="uk-navbar-nav">
-                <li><a href="#">PREV</a></li>
-            </ul>
-        </div>
-        <div class="uk-navbar-center">
-            Set Up Services
-        </div>
-        <div class="uk-margin-right uk-margin-auto">
-            <ul class="uk-navbar-nav">
-                <li class="uk-active"><a href="#">SAVE</a></li>
-            </ul>
-        </div>
-    </div>
-        <hr>
+        @include('navbar')
         <div class="uk-margin">
             <hr>
             <div class="uk-flex-middle uk-margin-top uk-margin-bottom" uk-grid>
