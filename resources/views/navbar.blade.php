@@ -15,7 +15,7 @@
         </ul>
         <?php else: ?>
         <ul class="uk-navbar-nav">
-            <li> <a class="uk-button uk-margin-small-right" type="button" href="logout">logout</a></li>
+            <li> <a class="uk-button uk-margin-small-right" type="button" href="logout">{{ auth()->user()->name }},logout</a></li>
         </ul>
         <?php endif; ?>
     </div>
