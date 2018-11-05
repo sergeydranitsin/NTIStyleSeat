@@ -44,10 +44,6 @@ class User extends Authenticatable
         return $this->belongsTo('App\Vocation', 'id', 'user_id');
     }
 
-    public function appointments(){
-        return $this->belongsTo('App\Appointments', 'id', 'user_id');
-    }
-
     public function upcoming_hours(){
         return $this->belongsTo('App\Upcoming_hours', 'id', 'user_id');
     }

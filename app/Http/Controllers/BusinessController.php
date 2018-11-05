@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\UserExtensions\BusinessUser;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -26,41 +27,50 @@ class BusinessController extends Controller
     /**
      * Returns view with search form and results.
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return string
      */
     public function index(Request $request)
     {
-        /*
-        //TODO use `with` for N+1 problem
-        //TODO join all needed tables
-        $query = App\User::query();
+        $per_page = 50;
+        $is_json = $request->has('json');
 
-        if ($request->has('name')){
-            $query->where('name', 'LIKE', $request->input('name'));
+        $query = BusinessUser::with('profile_data', 'weekly_worktime', 'vocation', 'upcoming_hours', 'appointments', 'users_services');
+        if ($request->has('name')){ //TODO first + last name
+            $query->where('first_name', 'LIKE', $request->input('name'));
         }
-        if ($request->has('$category_id')){
+        if ($request->has('category_id')){
             $query->where('category_id', '=', $request->input('category_id'));
         }
-        if ($request->has('$city')){
-            $query->where('city', 'LIKE', $request->input('city'));
+        if ($request->has('city')){ //TODO (city in search by coords not by address) OR (add field 'city' to profile_data)
+            $city = $request->input('city');
+            $query->where('address', 'LIKE', '%'.$city.'%');
         }
         //TODO add date parameter
-        //TODO pagination(50), OFFSET+LIMIT
-        */
-        return view();
+
+        if ($is_json){
+            $limit = $query->count();
+
+            $offset = $request->has('offset') ? $request->input('offset') : 0;
+            $users = $query->offset($offset)->limit($per_page)->get();
+            $on_this_page = count($users);
+
+            return compact('users', 'offset', 'limit', 'on_this_page' );
+        }
+        else {
+            $query->paginate($per_page);
+            return "View not implemented";
+        }
     }
 
     /**
      * Returns view for business user: name, portfolio, coordinates etc
      * @param Request $request
-     * @param User $user business user to show
+     * @param BusinessUser $businessUser
      * @return mixed
      */
-    public function show(Request $request, User $user){
-        if (!$user->is_business){ //TODO check is exists
-            return response()->json(['error' => 'Not business user'],400);
-        } //TODO create middleware
-        //TODO return to view: name, portfolio, city+coordinates, description, categories, time, social media profiles, photos...
-        return "Ok";
+    public function show(Request $request, BusinessUser $businessUser){
+        //TODO count free time
+        //TODO send ALL data including relationships
+        return $businessUser;
     }
 }

@@ -29,7 +29,7 @@ Route::get('/register_client', 'Authentication@getRegisterClientForm');
 Route::post('/register_client', 'Authentication@registerClient');
 
 Route::get('/professionals', 'BusinessController@index');
-Route::get('/professionals/{id}', 'BusinessController@show');
+Route::get('/professionals/{businessUser}', 'BusinessController@show');
 
 Route::get('login/facebook', 'Authentication@redirectToFacebook');
 Route::get('login/vk', 'Authentication@redirectToVK');

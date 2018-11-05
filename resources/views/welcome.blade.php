@@ -9,7 +9,12 @@
     <link rel="stylesheet" href="/css/style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src='/js/uikit.js'></script>
+<<<<<<< HEAD
     <script src='/js/script.js'></script>
+=======
+
+
+>>>>>>> origin/master
 </head>
 
 <body>
@@ -341,5 +346,9 @@
         </div>
     </div>
 </body>
+<<<<<<< HEAD
 
+=======
+<script src='/js/script.js'></script>
+>>>>>>> origin/master
 </html>
