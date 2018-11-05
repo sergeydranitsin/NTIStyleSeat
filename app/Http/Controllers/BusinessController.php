@@ -15,18 +15,7 @@ use Illuminate\Support\Facades\DB;
  */
 class BusinessController extends Controller
 {
-    private $users;
-
-    /**
-     * BusinessController constructor.
-     * @param User $users users store
-     */
-    public function __construct(User $users)
-    {
-        $this->$users = $users;
-    }
-
-    /**
+   /**
      * Returns view with search form and results.
      * @param Request $request
      * @return string
@@ -36,7 +25,7 @@ class BusinessController extends Controller
         $per_page = 50;
         $is_json = $request->has('json');
 
-        $query = BusinessUser::with('profile_data', 'weekly_worktime', 'vocation', 'upcoming_hours', 'appointments', 'users_services', 'users_services.services');
+        $query = BusinessUser::with('profile_data', 'weekly_worktime', 'appointments', 'users_services', 'users_services.services', 'users_services.services.categories');
         if ($request->has('name')){
             $name = $request->input('name');
             $query->where(DB::raw("CONCAT(first_name, ' ', second_name)"), 'LIKE', "%{$name}%");
@@ -73,7 +62,7 @@ class BusinessController extends Controller
      */
     public function show(Request $request, BusinessUser $businessUser){
         $is_json = $request->has('json');
-        $businessUser->load('profile_data', 'weekly_worktime', 'vocation', 'upcoming_hours', 'appointments', 'users_services', 'users_services.services', 'users_services.services.categories');
+        $businessUser->load('profile_data', 'weekly_worktime', 'appointments', 'users_services', 'users_services.services', 'users_services.services.categories');
         //TODO count free time
         if ($is_json) {
             return $businessUser;
