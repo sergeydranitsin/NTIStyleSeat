@@ -8,18 +8,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-
-    <!--
-    Favicon Icons
-  -->
-    <link rel="shortcut icon" type="image/png" href="https://d4u5qzkfpc9yt.cloudfront.net/favicons/favicon-32x32.3704828c008293122af935e70c48725844d727a0.png" sizes="32x32">
-    <link rel="shortcut icon" type="image/png" href="https://d4u5qzkfpc9yt.cloudfront.net/favicons/android-chrome-192x192.46039ab11a312dd94c8ab7337e7c82dd78fe0cfb.png" sizes="192x192">
-    <link rel="shortcut icon" type="image/png" href="https://d4u5qzkfpc9yt.cloudfront.net/favicons/favicon-96x96.cfea4d30bcc576e75bcb73e374e5dfc8df15072f.png" sizes="96x96">
-    <link rel="shortcut icon" type="image/png" href="https://d4u5qzkfpc9yt.cloudfront.net/favicons/favicon-16x16.1c4bed93a9f7ac02c32fd4fb3cd8e91d95dcf3b9.png" sizes="16x16">
-
-    <!-- styles necessary before everything else is loaded -->
-    <!-- generated from app/styles/loading.scss -->
-
     <link rel="stylesheet" href="/css/uikit.css" />
     <link rel="stylesheet" href="/css/style.css" />
 
