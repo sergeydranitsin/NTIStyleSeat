@@ -43,7 +43,7 @@ class User extends Authenticatable
     public function vocation(){
         return $this->belongsTo('App\Vocation', 'id', 'user_id');
     }
-    
+
     public function upcoming_hours(){
         return $this->belongsTo('App\Upcoming_hours', 'id', 'user_id');
     }

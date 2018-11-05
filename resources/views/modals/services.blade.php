@@ -1,19 +1,6 @@
-<div id="modal-client" uk-modal>
-    <div class="uk-flex">
-        <div class="uk-margin-left uk-margin-auto">
-            <ul class="uk-navbar-nav">
-                <li><a href="#">PREV</a></li>
-            </ul>
-        </div>
-        <div class="uk-navbar-center">
-            Set Up Services
-        </div>
-        <div class="uk-margin-right uk-margin-auto">
-            <ul class="uk-navbar-nav">
-                <li class="uk-active"><a href="#">SAVE</a></li>
-            </ul>
-        </div>
-    </div>
+<div id="modal-service" uk-modal>
+    @include('navbar')
+    <hr class="uk-margin-remove">
     <div class="uk-flex">
         <div class="uk-margin-auto" uk-slider>
             <div class="uk-position-relative">

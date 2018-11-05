@@ -2,67 +2,34 @@
 <html>
 
 <head>
-    <title>StyleSeat - Online Booking for Hair Stylists & Beauty Professionals</title>
+    <title>Profile</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-
-    <!--
-    Favicon Icons
-  -->
-    <link rel="shortcut icon" type="image/png" href="https://d4u5qzkfpc9yt.cloudfront.net/favicons/favicon-32x32.3704828c008293122af935e70c48725844d727a0.png" sizes="32x32">
-    <link rel="shortcut icon" type="image/png" href="https://d4u5qzkfpc9yt.cloudfront.net/favicons/android-chrome-192x192.46039ab11a312dd94c8ab7337e7c82dd78fe0cfb.png" sizes="192x192">
-    <link rel="shortcut icon" type="image/png" href="https://d4u5qzkfpc9yt.cloudfront.net/favicons/favicon-96x96.cfea4d30bcc576e75bcb73e374e5dfc8df15072f.png" sizes="96x96">
-    <link rel="shortcut icon" type="image/png" href="https://d4u5qzkfpc9yt.cloudfront.net/favicons/favicon-16x16.1c4bed93a9f7ac02c32fd4fb3cd8e91d95dcf3b9.png" sizes="16x16">
-
-
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-TileImage" content="https://d4u5qzkfpc9yt.cloudfront.net/favicons/mstile-144x144.7f7356b104f883d3d4fb2cf19d18d3f24c8cb71d.png">
-    <meta name="theme-color" content="#2a2e33">
-
-    <!--
-    START Social Sharing Tags
-  -->
-    <link rel="image_src" href="https://d4u5qzkfpc9yt.cloudfront.net/images/styleseat.9ac8638dcd47f7849189397ea75cfa0fac03ef57.png" />
-    <meta property='og:image' content='https://d4u5qzkfpc9yt.cloudfront.net/images/styleseat.9ac8638dcd47f7849189397ea75cfa0fac03ef57.png' />
-    <meta name="twitter:image" content="https://d4u5qzkfpc9yt.cloudfront.net/images/styleseat.9ac8638dcd47f7849189397ea75cfa0fac03ef57.png" />
-
-
-    <meta name="description" content="StyleSeat is the online destination for beauty &amp; wellness professionals and clients. Professionals can showcase their work, connect with new and existing clients, and build their business. Clients can discover new services and providers, book appointments online, and get inspired" />
-    <link rel="canonical" href="" />
-    <meta name="robots" content="">
-
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="StyleSeat - Online Booking for Hair Stylists & Beauty Professionalst" />
-    <meta property="og:title" content="" />
-    <meta property="og:description" content="StyleSeat is the online destination for beauty &amp; wellness professionals and clients. Professionals can showcase their work, connect with new and existing clients, and build their business. Clients can discover new services and providers, book appointments online, and get inspired" />
-
-
-    <!--
-    END Social Sharing Tags
-  -->
-
-
-
-    <!-- styles necessary before everything else is loaded -->
-    <!-- generated from app/styles/loading.scss -->
-
-    <link rel="stylesheet" href="/css/uikit.min.css" />
+    <link rel="stylesheet" href="/css/uikit.css" />
     <link rel="stylesheet" href="/css/style.css" />
 
-    <script type="text/JavaScript" src="/js/min_jquery.js"></script>
-    <script type="text/JavaScript" src="/js/index.js"></script>
-    <script type="text/JavaScript" src="/js/yaipm.js"></script>
-
-    <script src="/js/uikit.min.js"></script>
-    <script src="/js/uikit-icons.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/js/uikit-icons.js"></script>
+    <script src='/js/uikit.js'></script>
+    <script src='/js/script.js'></script>
 
 </head>
 
-<body class="styleseat">
+<body>
+    <div class="uk-section-primary uk-preserve-color" style="background-image:url(https://d220aniogakg8b.cloudfront.net/static/uploads/2018/09/24/49ff8f3f-f05_6780123_1440x1080.jpg);">
+
+        <div uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light; top: 200" class="uk-sticky">
+            @include('navbar')
+        </div>
+        <div class="uk-sticky-placeholder" style="height: 80px; margin: 0px;" hidden=""></div>
+
+        <div class="uk-section uk-light">
+        </div>
+
+    </div>
 
     <div class="profile-head uk-grid-collapse uk-width-3-5 uk-margin-auto uk-child-width-expand@s" uk-grid>
         <div class="left-p uk-text-left uk-width-3-5">
@@ -106,7 +73,7 @@
                 </div>
             </div>
 
-            <div class="uk-section uk-container uk-flex-center">
+            <div class="uk-section uk-container uk-flex-center uk-padding-small">
                 <hr class="uk-margin-remove">
                 <div class="uk-flex-middle uk-margin-remove uk-padding-remove-left uk-background-default uk-grid" uk-grid="">
                     <div class="uk-width-3-4 uk-flex uk-padding-remove uk-first-column">

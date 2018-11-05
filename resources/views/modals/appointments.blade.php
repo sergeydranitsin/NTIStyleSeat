@@ -1,21 +1,6 @@
 <div id="modal-appointments" uk-modal>
     <div class="cardcust uk-background-default">
-        <div class="uk-flex">
-            <div class="uk-margin-left uk-margin-auto">
-                <ul class="uk-navbar-nav">
-                    <li><a href="#">PREV</a></li>
-                </ul>
-            </div>
-            <div class="uk-navbar-center">
-                Set Up Services
-            </div>
-            <div class="uk-margin-right uk-margin-auto">
-                <ul class="uk-navbar-nav">
-                    <li class="uk-active"><a href="#">SAVE</a></li>
-                </ul>
-            </div>
-        </div>
-        <hr>
+        @include('navbar')
         <div class="uk-flex-middle uk-margin-remove uk-padding-remove-left uk-background-default" uk-grid>
             <div class="uk-width-3-4 uk-flex uk-padding-remove">
                 <div class="uk-margin-left clh">
