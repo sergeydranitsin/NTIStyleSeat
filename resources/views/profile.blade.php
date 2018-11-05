@@ -49,15 +49,15 @@
     <!-- styles necessary before everything else is loaded -->
     <!-- generated from app/styles/loading.scss -->
 
-    <link rel="stylesheet" href="css/uikit.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/uikit.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
 
-    <script type="text/JavaScript" src="js/min_jquery.js"></script>
-    <script type="text/JavaScript" src="js/index.js"></script>
-    <script type="text/JavaScript" src="js/yaipm.js"></script>
+    <script type="text/JavaScript" src="/js/min_jquery.js"></script>
+    <script type="text/JavaScript" src="/js/index.js"></script>
+    <script type="text/JavaScript" src="/js/yaipm.js"></script>
 
-    <script src="js/uikit.min.js"></script>
-    <script src="js/uikit-icons.min.js"></script>
+    <script src="/js/uikit.min.js"></script>
+    <script src="/js/uikit-icons.min.js"></script>
 
 
 </head>

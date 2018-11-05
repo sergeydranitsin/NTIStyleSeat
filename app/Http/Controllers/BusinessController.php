@@ -68,7 +68,7 @@ class BusinessController extends Controller
             return $businessUser;
         }
         else {
-            return "View not implemented";
+            return view('profile');
         }
     }
 }
