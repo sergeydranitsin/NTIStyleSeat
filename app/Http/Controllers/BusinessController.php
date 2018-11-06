@@ -63,8 +63,8 @@ class BusinessController extends Controller
      */
     public function show(Request $request, BusinessUser $businessUser){
         $is_json = $request->has('json');
-        $businessUser->load('profile_data', 'portfolio_photos', 'header_photos', 'weekly_worktime',
-            'appointments', 'users_services', 'users_services.services', 'users_services.services.categories');
+        $businessUser->load('profile_data', 'portfolio_photos', 'weekly_worktime', 'appointments',
+            'users_services', 'users_services.services', 'users_services.services.categories');
         //TODO count free time
         if ($is_json) {
             return $businessUser;
@@ -84,8 +84,8 @@ class BusinessController extends Controller
             return abort(403);
         }
         else {
-            $businessUser->load('profile_data', 'portfolio_photos', 'header_photos', 'weekly_worktime',
-                'appointments', 'users_services', 'users_services.services', 'users_services.services.categories');
+            $businessUser->load('profile_data', 'portfolio_photos', 'weekly_worktime', 'appointments',
+                'users_services', 'users_services.services', 'users_services.services.categories');
             return view('profileEdit', compact('businessUser'));
         }
     }
