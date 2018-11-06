@@ -185,7 +185,7 @@ class BusinessController extends Controller
         $weekly_worktime = $this->_buildWorktimeText($weekly_worktime_plain);
         $available_time = $this->_buildAvailableTime($weekly_worktime_plain, $appointments);
 
-        $businessUser->makeHidden('weekly_worktime', 'appointments')->toArray();
+        $businessUser->makeHidden(['weekly_worktime', 'appointments'])->toArray();
         if ($is_json) {
             return compact('businessUser', 'weekly_worktime', 'available_time');
         }
