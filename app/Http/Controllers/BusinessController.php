@@ -107,7 +107,7 @@ class BusinessController extends Controller
                 $worktime = $worktime_dict[$day_of_week];
                 unset($worktime['user_id'], $worktime['id']);
 
-                $available_day = range($worktime["start_time"], $worktime["end_time"]);
+                $available_day = range($worktime["start_time"], $worktime["end_time"]-1);
                 if (isset($worktime["start_break_time"], $worktime["end_break_time"])){
                     $break = range($worktime["start_break_time"], $worktime["end_break_time"]-1);
                     $available_day = array_values(array_diff($available_day, $break));
