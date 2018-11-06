@@ -41,19 +41,19 @@ class User extends Authenticatable
     }
 
     public function weekly_worktime(){
-        return $this->belongsTo('App\Weekly_worktime', 'id', 'user_id');
+        return $this->hasMany('App\Weekly_worktime', 'user_id', 'id');
     }
 
     public function vocation(){
-        return $this->belongsTo('App\Vocation', 'id', 'user_id');
+        return $this->hasOne('App\Vocation', 'user_id', 'id');
     }
 
     public function upcoming_hours(){
-        return $this->belongsTo('App\Upcoming_hours', 'id', 'user_id');
+        return $this->hasMany('App\Upcoming_hours', 'user_id', 'id');
     }
 
     public function users_services(){
-        return $this->belongsTo('App\Users_services', 'id', 'user_id');
+        return $this->hasMany('App\Users_services', 'user_id', 'id');
     }
 	public function sendPasswordResetNotification($token)
     {

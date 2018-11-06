@@ -14,7 +14,7 @@ class ClientUser extends User
     }
 
     public function appointments(){
-        return $this->belongsTo('App\Appointments', 'id', 'client_id');
+        return $this->hasMany('App\Appointments', 'id', 'client_id');
     }
 
 }

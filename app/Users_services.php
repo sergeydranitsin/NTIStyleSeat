@@ -20,10 +20,10 @@ class Users_services extends Model
     }
 
     public function user(){
-        return $this->hasMany('App\User', 'user_id', 'id');
+        return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
     public function services(){
-        return $this->hasMany('App\Services', 'service_id', 'id');
+        return $this->belongsTo('App\Services', 'service_id', 'id');
     }
 }

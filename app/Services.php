@@ -16,10 +16,10 @@ class Services extends Model
     ];
 
     public function users_services(){
-        return $this->belongsTo('App\Users_services', 'id', 'service_id');
+        return $this->hasMany('App\Users_services', 'service_id', 'id');
     }
 
     public function categories(){
-        return $this->hasMany('App\Categories', 'category_id', 'id');
+        return $this->belongsTo('App\Categories', 'category_id', 'id');
     }
 }

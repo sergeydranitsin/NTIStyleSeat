@@ -15,17 +15,11 @@ use Illuminate\Support\Facades\DB;
  */
 class BusinessController extends Controller
 {
-    private $weekMap = [
-        1 => 'MO',
-        2 => 'TU',
-        3 => 'WE',
-        4 => 'TH',
-        5 => 'FR',
-        6 => 'SA',
-        7 => 'SU'];
-
-    private function _check_break_valid($startTime, $endTime, $startBreak, $endBreak){
-        //TODO check (sb;eb)>st & <et / st<et / sb < eb / all >=0 <=96
+    private function _isWeekdayWorktimeValid($weekday, $startTime, $endTime, $startBreak, $endBreak){
+        return ($weekday >= 1 && $weekday <= 7
+            && $startBreak < $endBreak && $startTime < $endTime
+            && $endBreak < $endTime && $startBreak > $startTime
+            && $startTime >= 0 && $endTime <=96);
     }
    /**
      * Returns view with search form and results.
@@ -75,10 +69,15 @@ class BusinessController extends Controller
      */
     public function show(Request $request, BusinessUser $businessUser){
         $is_json = $request->has('json');
-        $businessUser->load('profile_data', 'portfolio_photos', 'weekly_worktime', 'appointments',
+        $businessUser->load('profile_data', 'portfolio_photos', 'appointments',
             'users_services', 'users_services.services', 'users_services.services.categories');
+
+        $weekly_worktime = $businessUser->weekly_worktime;
+
+
+        $businessUser->makeHidden('weekly_worktime')->toArray();
         if ($is_json) {
-            return $businessUser;
+            return compact('businessUser', 'weekly_worktime');
         }
         else {
             return view('profile', compact('businessUser'));

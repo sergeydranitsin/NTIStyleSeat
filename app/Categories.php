@@ -16,6 +16,6 @@ class Categories extends Model
     ];
 
     public function service(){
-        return $this->belongsTo('App\Services', 'id', 'category_id');
+        return $this->hasMany('App\Services', 'category_id', 'id');
     }
 }

@@ -16,6 +16,6 @@ class Weekly_worktime extends Model
     ];
 
     public function user(){
-        return $this->hasOne('App\User', 'user_id', 'id');
+        return $this->belongsTo('App\BusinessUser', 'user_id', 'id');
     }
 }

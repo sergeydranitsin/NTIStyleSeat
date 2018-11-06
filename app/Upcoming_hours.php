@@ -16,6 +16,6 @@ class Upcoming_hours extends Model
     ];
 
     public function user(){
-        return $this->hasOne('App\User', 'user_id', 'id');
+        return $this->belongsTo('App\BusinessUser', 'user_id', 'id');
     }
 }
