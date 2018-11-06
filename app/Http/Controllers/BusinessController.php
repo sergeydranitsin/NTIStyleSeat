@@ -15,6 +15,15 @@ use Illuminate\Support\Facades\DB;
  */
 class BusinessController extends Controller
 {
+    private $weekMap = [
+        1 => 'MO',
+        2 => 'TU',
+        3 => 'WE',
+        4 => 'TH',
+        5 => 'FR',
+        6 => 'SA',
+        7 => 'SU'];
+
    /**
      * Returns view with search form and results.
      * @param Request $request
@@ -65,7 +74,7 @@ class BusinessController extends Controller
         $is_json = $request->has('json');
         $businessUser->load('profile_data', 'portfolio_photos', 'weekly_worktime', 'appointments',
             'users_services', 'users_services.services', 'users_services.services.categories');
-        //TODO count free time
+        $weekly_workday = [];
         if ($is_json) {
             return $businessUser;
         }
