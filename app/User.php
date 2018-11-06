@@ -36,6 +36,10 @@ class User extends Authenticatable
         return $this->hasOne('App\Profile_data', 'user_id', 'id');
     }
 
+    public function portfolio_photos(){
+        return $this->hasMany('App\PortfolioPhotos', 'user_id', 'id');
+    }
+
     public function weekly_worktime(){
         return $this->belongsTo('App\Weekly_worktime', 'id', 'user_id');
     }

@@ -25,7 +25,8 @@ class BusinessController extends Controller
         $per_page = 50;
         $is_json = $request->has('json');
 
-        $query = BusinessUser::with('profile_data', 'weekly_worktime', 'appointments', 'users_services', 'users_services.services', 'users_services.services.categories');
+        $query = BusinessUser::with('profile_data', 'portfolio_photos', 'weekly_worktime', 'appointments',
+            'users_services', 'users_services.services', 'users_services.services.categories');
         if ($request->has('name')){
             $name = $request->input('name');
             $query->where(DB::raw("CONCAT(first_name, ' ', second_name)"), 'LIKE', "%{$name}%");
@@ -62,7 +63,8 @@ class BusinessController extends Controller
      */
     public function show(Request $request, BusinessUser $businessUser){
         $is_json = $request->has('json');
-        $businessUser->load('profile_data', 'weekly_worktime', 'appointments', 'users_services', 'users_services.services', 'users_services.services.categories');
+        $businessUser->load('profile_data', 'portfolio_photos', 'weekly_worktime', 'appointments',
+            'users_services', 'users_services.services', 'users_services.services.categories');
         //TODO count free time
         if ($is_json) {
             return $businessUser;
@@ -78,9 +80,17 @@ class BusinessController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(BusinessUser $businessUser){
-        if (Auth::id() == $businessUser->id){
-            return view('profileEdit', compact('businessUser'));
+        if (!Auth::id() == $businessUser->id){
+            return abort(403);
         }
-        else return abort(403);
+        else return view('profileEdit', compact('businessUser'));
+    }
+
+    /**
+     * @param BusinessUser $businessUser
+     * @return string
+     */
+    public function update(BusinessUser $businessUser){
+        return "Not implemented";
     }
 }
