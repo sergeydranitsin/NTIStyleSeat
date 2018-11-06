@@ -68,7 +68,19 @@ class BusinessController extends Controller
             return $businessUser;
         }
         else {
-            return view('profile');
+            return view('profile', compact('businessUser'));
         }
+    }
+
+    /**
+     * Return view to edit
+     * @param BusinessUser $businessUser
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit(BusinessUser $businessUser){
+        if (Auth::id() == $businessUser->id){
+            return view('profileEdit', compact('businessUser'));
+        }
+        else return abort(403);
     }
 }

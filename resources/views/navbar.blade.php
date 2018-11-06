@@ -15,7 +15,7 @@
         </ul>
         <?php else: ?>
         <ul class="uk-navbar-nav">
-            <li> <a class="uk-button uk-margin-small-right" type="button" href="logout">{{ auth()->user()->name }},logout</a></li>
+            <li> <a class="uk-button uk-margin-small-right" type="button" href="/logout">{{ auth()->user()->name }},logout</a></li>
         </ul>
         <?php endif; ?>
     </div>
@@ -65,8 +65,8 @@
                     <div class="uk-text-center uk-margin-small-top uk-margin-remove-bottom uk-text-small">By signing up I agree to the Terms of Service and <a>Privacy Policy</a></div>
                 </li>
                 <li>
-                    <a href="login/facebook">
-                        <div class="uk-flex-middle regHover" href="login/facebook" uk-grid>
+                    <a href="/login/facebook">
+                        <div class="uk-flex-middle regHover" href="/login/facebook" uk-grid>
                             <div class="uk-width-1-4">
                                 <img src="/img/Xf8BBzEHtwM.jpg" alt="Image">
                             </div>
@@ -75,7 +75,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="login/vk">
+                    <a href="/login/vk">
                         <div class="uk-flex-middle uk-margin-small-top uk-margin-remove-bottom regHover" uk-grid>
                             <div class="uk-width-1-4">
                                 <img src="/img/56df0dbaee8c9153574da261.png" alt="Image">
@@ -219,8 +219,8 @@
                     <div class="uk-text-center uk-margin-small-top uk-margin-remove-bottom uk-text-small">By signing up I agree to the Terms of Service and <a>Privacy Policy</a></div>
                 </li>
                 <li>
-                    <a href="login/facebook">
-                        <div id="lFB" class="uk-flex-middle regHover" href="login/facebook" uk-grid>
+                    <a href="/login/facebook">
+                        <div id="lFB" class="uk-flex-middle regHover" href="/login/facebook" uk-grid>
                             <div class="uk-width-1-4">
                                 <img src="/img/Xf8BBzEHtwM.jpg" alt="Image">
                             </div>
@@ -229,7 +229,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="login/vk">
+                    <a href="/login/vk">
                         <div id="lVK" class="uk-flex-middle uk-margin-small-top uk-margin-remove-bottom regHover" uk-grid>
                             <div class="uk-width-1-4">
                                 <img src="/img/56df0dbaee8c9153574da261.png" alt="Image">
