@@ -23,7 +23,7 @@ class Users_services extends Model
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
-    public function services(){
+    public function service(){
         return $this->belongsTo('App\Services', 'service_id', 'id');
     }
 }

@@ -177,7 +177,7 @@ class BusinessController extends Controller
     public function show(Request $request, BusinessUser $businessUser){
         $is_json = $request->has('json');
         $businessUser->load('profile_data', 'portfolio_photos', 'users_services',
-            'users_services.services', 'users_services.services.categories');
+            'users_services.service', 'users_services.service.category');
 
         $weekly_worktime_plain = $businessUser->weekly_worktime;
         $appointments = $businessUser->appointments->load("users_services");

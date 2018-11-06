@@ -19,7 +19,7 @@ class Services extends Model
         return $this->hasMany('App\Users_services', 'service_id', 'id');
     }
 
-    public function categories(){
+    public function category(){
         return $this->belongsTo('App\Categories', 'category_id', 'id');
     }
 }
