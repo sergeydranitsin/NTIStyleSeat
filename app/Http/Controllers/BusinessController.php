@@ -24,6 +24,9 @@ class BusinessController extends Controller
         6 => 'SA',
         7 => 'SU'];
 
+    private function _check_break_valid($startTime, $endTime, $startBreak, $endBreak){
+        //TODO check (sb;eb)>st & <et / st<et / sb < eb / all >=0 <=96
+    }
    /**
      * Returns view with search form and results.
      * @param Request $request
@@ -74,7 +77,6 @@ class BusinessController extends Controller
         $is_json = $request->has('json');
         $businessUser->load('profile_data', 'portfolio_photos', 'weekly_worktime', 'appointments',
             'users_services', 'users_services.services', 'users_services.services.categories');
-        $weekly_workday = [];
         if ($is_json) {
             return $businessUser;
         }
