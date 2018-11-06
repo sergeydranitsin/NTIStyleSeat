@@ -31,14 +31,14 @@
 
     </div>
 
-    <div class="profile-head uk-grid-collapse uk-width-3-5 uk-margin-auto uk-child-width-expand@s" uk-grid>
+    <!--<div class="profile-head uk-grid-collapse uk-width-3-5 uk-margin-auto uk-child-width-expand@s" uk-grid>
         <div class="left-p uk-text-left uk-width-3-5">
         </div>
         <div class="right-p uk-light uk-width-2-5">
             <button class="bookmark-btn uk-button uk-button-default uk-button-small uk-align-right"><span class="uk-margin-small-right" uk-icon="bookmark"></span>BOOKMARK</button>
 
         </div>
-    </div>
+    </div>-->
     <div class="profile-content uk-grid-collapse uk-width-3-5 uk-margin-auto uk-child-width-expand@s" uk-grid>
 
         <div class="left-p uk-text-left uk-width-3-5">
@@ -222,9 +222,9 @@
     </div>
     <div class="profile-breadcrumbs uk-flex uk-flex-center">
         <ul class="uk-breadcrumb">
-            <li><span>Glendale, OR</span></li>
-            <li><span>Haircut</span></li>
-            <li><span>Gercen S</span></li>
+            <li><span>{{$businessUser->profile_data->city ?? "Unknown city"}}</span></li>
+            <!--<li><span>Haircut</span></li>-->
+            <li><span>{{"{$businessUser->first_name} {$businessUser->second_name}"}}</span></li>
         </ul>
 
     </div>

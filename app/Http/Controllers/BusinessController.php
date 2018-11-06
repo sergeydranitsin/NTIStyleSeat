@@ -25,7 +25,7 @@ class BusinessController extends Controller
         $per_page = 50;
         $is_json = $request->has('json');
 
-        $query = BusinessUser::with('profile_data', 'portfolio_photos', 'weekly_worktime', 'appointments',
+        $query = BusinessUser::with('profile_data', 'weekly_worktime', 'appointments',
             'users_services', 'users_services.services', 'users_services.services.categories');
         if ($request->has('name')){
             $name = $request->input('name');
@@ -63,8 +63,8 @@ class BusinessController extends Controller
      */
     public function show(Request $request, BusinessUser $businessUser){
         $is_json = $request->has('json');
-        $businessUser->load('profile_data', 'portfolio_photos', 'weekly_worktime', 'appointments',
-            'users_services', 'users_services.services', 'users_services.services.categories');
+        $businessUser->load('profile_data', 'portfolio_photos', 'header_photos', 'weekly_worktime',
+            'appointments', 'users_services', 'users_services.services', 'users_services.services.categories');
         //TODO count free time
         if ($is_json) {
             return $businessUser;
@@ -75,7 +75,7 @@ class BusinessController extends Controller
     }
 
     /**
-     * Return view to edit
+     * Return view to edit profile
      * @param BusinessUser $businessUser
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -83,10 +83,15 @@ class BusinessController extends Controller
         if (!Auth::id() == $businessUser->id){
             return abort(403);
         }
-        else return view('profileEdit', compact('businessUser'));
+        else {
+            $businessUser->load('profile_data', 'portfolio_photos', 'header_photos', 'weekly_worktime',
+                'appointments', 'users_services', 'users_services.services', 'users_services.services.categories');
+            return view('profileEdit', compact('businessUser'));
+        }
     }
 
     /**
+     * Edits profile
      * @param BusinessUser $businessUser
      * @return string
      */
