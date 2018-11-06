@@ -16,7 +16,7 @@ class Users_services extends Model
     ];
 
     public function appointments(){
-        return $this->belongsTo('App\Appointments', 'id', 'user_service_id');
+        return $this->hasMany('App\Appointments', 'user_service_id', 'id');
     }
 
     public function user(){

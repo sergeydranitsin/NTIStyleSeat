@@ -19,7 +19,7 @@ class Appointments extends Model
         return $this->belongsTo('App\ClientUser', 'user_id', 'id');
     }
 
-    public function user_services(){
-        return $this->hasOne('App\Users_services', 'user_service_id', 'id');
+    public function users_services(){
+        return $this->belongsTo('App\Users_services', 'user_service_id', 'id');
     }
 }
